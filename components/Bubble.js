@@ -42,18 +42,101 @@ export default function Bubble({ x, y, radius }) {
           borderRadius: radius,
         },
       ]}
-    />
+    >
+        <View
+              style={[
+                styles.ring1,
+                {
+                  top: 4.0,
+                  left: 4.0,
+                  width: radius * 1.75,
+                  height: radius * 1.75,
+                  borderRadius: radius,
+            },
+          ]}
+      />
+      <View
+            style={[
+              styles.ring2,
+              {
+                top: 8.0,
+                left: 8.0,
+                width: radius * 1.5,
+                height: radius * 1.5,
+                borderRadius: radius,
+          },
+        ]}
+      />
+      <View
+              style={[
+                styles.ring1,
+                {
+                  top: 12.0,
+                  left: 12.0,
+                  width: radius * 1.25,
+                  height: radius * 1.25,
+                  borderRadius: radius,
+            },
+          ]}
+      />
+      <View
+        style={[
+          styles.ring2,
+          {
+            top: 16.0,
+            left: 16.0,
+            width: radius * 1.00,
+            height: radius * 1.00,
+            borderRadius: radius,
+          },
+        ]}
+      />
+      <View
+          style={[
+            styles.ring1,
+            {
+              top: 20.0,
+              left: 20.0,
+              width: radius * 0.75,
+              height: radius * 0.75,
+              borderRadius: radius,
+            },
+          ]}
+        />
+      <View
+        style={[
+          styles.ring2,
+          {
+            top: 24.0,
+            left: 24.0,
+            width: radius * 0.50,
+            height: radius * 0.50,
+            borderRadius: radius,
+          },
+        ]}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   bubble: {
     position: 'absolute',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F20202',
+    borderWidth: 0,
+    borderColor: '#F20202',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 5,
   },
+  ring1: {
+    position: 'absolute',
+    backgroundColor: '#FFFFFF',
+  },
+  ring2: {
+      position: 'absolute',
+      backgroundColor: '#F20202',
+  }
 });
