@@ -153,7 +153,7 @@ export default function GameScreen() {
      */
     
     // Check for hits immediately
-    checkHits(gunCenterX);
+    checkHits(gunPosition.x + gunWidth/2 - 1.5);
     
     // Make laser disappear after 300ms
     laserTimeoutRef.current = setTimeout(() => {
@@ -342,7 +342,7 @@ export default function GameScreen() {
             <View
               style={[
                 styles.laser,
-                { left: gunCenterX - 2 } // Center the 4px wide laser from gun center
+                { left: gunPosition.x + gunWidth/2 - 1.5 } // Center the 4px wide laser from gun center
               ]}
             />
           )}
@@ -490,7 +490,7 @@ const styles = StyleSheet.create({
   },
   laser: {
     position: 'absolute',
-    top: 0,
+    top: -60,
     width: 4,
     height: '100%',
     backgroundColor: '#ff0000',
