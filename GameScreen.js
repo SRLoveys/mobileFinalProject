@@ -71,9 +71,14 @@ export default function GameScreen() {
   
   // Fixed gun position - currently in the middle (MODIFY THIS)
   const gunWidth = 60;
-  const gunPosition = screenWidth / 2 - gunWidth / 2;
+  // const gunPosition = screenWidth / 2 - gunWidth / 2;
   const gunCenterX = screenWidth / 2;
-  
+
+  const [gunPosition, setGunPosition] = useState({
+          x: screenWidth / 2 - gunWidth / 2,
+          y: screenHeight - 70
+        });
+
   /**
    * ============== STUDENT TASK 2 ==============
    * TODO: IMPLEMENT GUN MOVEMENT
@@ -90,7 +95,14 @@ export default function GameScreen() {
    *   setGunPosition({ x: locationX - gunWidth/2, y: locationY });
    * };
    */
-  
+
+  const handleTouchMove = (event) => {
+        const { pageX, pageY } = event.nativeEvent;
+        if (pageY > screenHeight - 70) {
+          setGunPosition({ x: pageX - gunWidth/2, y: pageY });
+        }
+      };
+
   // Refs for game timers and IDs
   const bubbleIdRef = useRef(1);
   const timerRef = useRef(null);
@@ -101,10 +113,15 @@ export default function GameScreen() {
    * Handle tap to shoot laser
    * Currently fires the laser on any tap when game is active
    */
-  const handleTap = () => {
-    if (!gameStarted || gameOver) return;
-    fireLaser();
-  };
+  const handleTap = (event) => {
+      const {pageX, pageY} = event.nativeEvent;
+      if (!gameStarted || gameOver) return;
+      handleTouchMove(event)
+
+      if (pageY < screenHeight - 70) {
+         fireLaser();
+      }
+    };
   
   /**
    * Fire a laser from the gun center
@@ -341,7 +358,7 @@ export default function GameScreen() {
            */}
           
           {/* Gun - currently static in middle */}
-          <View style={[styles.gun, { left: gunPosition }]}>
+          <View style={[styles.gun, { left: gunPosition.x }]}>
             <View style={styles.gunBase} />
             <View style={styles.gunBarrel} />
           </View>
